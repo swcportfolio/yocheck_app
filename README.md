@@ -1,19 +1,23 @@
-# urine
+# Yocheck_app
 
-Flutter로 구현한 소변 분석 앱  
+디지털 헬스케어 가정용 유린분석기 및 건강 관리 서비스 앱 개발
 
-## Getting Started
+가정용 유린 분석기와 연동된 건강 관리 앱을 개발하여 사용자가 자가 진단 및 맞춤형 건강 관리 서비스를 받을 수 있도록 하는 디지털 헬스케어 솔루션 앱개발
 
-This project is a starting point for a Flutter application.
+## 주요 화면
+- 블루투스 화면: 검사기 찾기, 연결, 검사 진행 할 수있도록 보여주는 화면
+- 히스토리 화면: 검사 결과 내역을 확인 할 수 있다.
+- 성분분석 화면: 검사 결과 기반으로 상세한 성분분석 결과를 확인 할 수 있다.
+- 추이 화면: 검사 결과 기반으로 나의 건강 추이 상태를 확인 할 수 있다.
 
-A few resources to get you started if this is your first Flutter project:
+## 사용된 기술 스택
+- 언어: Dart
+- 아키텍처: Clean Architecture
+- 패턴: MVVM
+- 상태 관리: Provider
+- 통신: dio, flutter_blue_plus
+- 의존성 주입: Get_it
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+## 버전
 - Flutter: 3.13.5
-- Drat: 3.12
+
