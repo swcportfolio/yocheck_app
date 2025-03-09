@@ -3,6 +3,7 @@ import 'package:urine/common/common.dart';
 import 'package:urine/layers/presentation/widget/style_text.dart';
 
 import '../../../../common/util/app_keyboard_util.dart';
+import '../../home/v_home.dart';
 import '../custom_app_bar.dart';
 
 class FrameScaffold extends StatelessWidget {
@@ -14,6 +15,7 @@ class FrameScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final bool isKeyboardHide;
   final bool isActions;
+  final bool isFloating;
 
   const FrameScaffold({
     super.key,
@@ -25,6 +27,7 @@ class FrameScaffold extends StatelessWidget {
     this.bottomNavigationBar,
     this.isActions = false,
     this.gradient,
+    this.isFloating = false,
   });
 
   @override
@@ -53,6 +56,13 @@ class FrameScaffold extends StatelessWidget {
           child: body,
         ),
         bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: isFloating ?
+        FloatingActionButton(
+          elevation: 2,
+          backgroundColor: AppColors.primaryColor,
+          onPressed: () { Nav.doAndRemoveUntil(context, HomeView()); },
+          child: Icon(Icons.home),
+        ) : null,
       ),
     );
   }

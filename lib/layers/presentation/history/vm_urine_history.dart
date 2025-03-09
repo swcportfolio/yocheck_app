@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../common/util/dio/dio_exceptions.dart';
 import '../../../../main.dart';
+import '../../domain/usecase/urine/delete_history_usecase.dart';
 import '../../domain/usecase/urine/history_usecase.dart';
 import '../../domain/usecase/urine/urine_result_usecase.dart';
 import '../../entity/history_dto.dart';
@@ -47,10 +48,35 @@ class HistoryViewModel extends ChangeNotifier {
     try {
       HistoryDTO? historyDTO = await HistoryCase().execute(history);
       if (historyDTO?.status.code == '200') {
-        if (_historyList.isEmpty) {
+        if (_historyList.isNotEmpty) {
           _historyList = historyDTO?.data ?? [];
         } else {
           _historyList.addAll(historyDTO?.data ?? []);
+        }
+      } else {
+        _historyList = [];
+      }
+
+      _isLoading = false;
+      notifyListeners();
+    } on DioException catch (e) {
+      final msg = DioExceptions.fromDioError(e).toString();
+      notifyError(msg);
+    } catch (e) {
+      logger.e(e.toString());
+      const msg = '죄송합니다.\n예기치 않은 문제가 발생했습니다.';
+      notifyError(msg);
+    }
+  }
+
+
+  Future<void> deleteHistory(String dateTime) async {
+    try {
+      final result = await DeleteHistoryCase().execute(dateTime);
+      if (result == 'Success') {
+        if (_historyList.isNotEmpty) {
+          _historyList.removeWhere((history) => history.datetime == dateTime);
+          notifyListeners();
         }
       } else {
         _historyList = [];

@@ -1,7 +1,10 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:urine/layers/model/authorization.dart';
+import 'package:urine/layers/presentation/setting/password/v_change_password.dart';
 import 'package:urine/layers/presentation/setting/v_version.dart';
 import 'package:urine/layers/presentation/setting/vm_setting.dart';
 
@@ -9,6 +12,7 @@ import '../../../../common/common.dart';
 import '../widget/scaffold/frame_scaffold.dart';
 import '../widget/style_text.dart';
 import '../widget/w_custom_dialog.dart';
+import 'footer_box.dart';
 import 'manager/v_manager.dart';
 import 'opensource/v_opensource.dart';
 import 'v_terms_full.dart';
@@ -33,24 +37,33 @@ class _SettingViewState extends State<SettingView>{
       create: (BuildContext context) => SettingViewModel(),
       child: FrameScaffold(
         appBarTitle: title,
-        body: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.only(top: AppDim.small),
-            child: Column(
-              children:
-              [
-
-                 Visibility(
-                   visible: Authorization().userID == 'sim3383' ? true : false,
-                   child: _buildMenu('관리자'),
-                 ),
-                _buildMenu('버전 정보'),
-                _buildMenu('이용약관 및 정책'),
-                _buildMenu('오픈소스 라이선스'),
-                _buildMenu('로그 아웃'),
-              ],
+        bodyPadding: EdgeInsets.zero,
+        body: Stack(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(AppDim.small),
+              child: Column(
+                children:
+                [
+                   Visibility(
+                     visible: Authorization().userID == 'sim3383' ? true : false,
+                     child: _buildMenu('관리자'),
+                   ),
+                  _buildMenu('비밀번호 변경'),
+                  _buildMenu('버전 정보'),
+                  _buildMenu('소변 검사지 구매'),
+                  _buildMenu('이용약관 및 정책'),
+                  _buildMenu('오픈소스 라이선스'),
+                  _buildMenu('로그 아웃'),
+                ],
+              ),
             ),
-          ),
+
+            const Align(
+              alignment: Alignment.bottomCenter,
+              child: FooterBox(),
+            ),
+          ],
         ),
       ),
     );
@@ -61,10 +74,25 @@ class _SettingViewState extends State<SettingView>{
     return Consumer<SettingViewModel>(
       builder: (context, provider, child) {
         return InkWell(
-          onTap: () {
+          onTap: () async {
             switch(text){
               case '관리자': {
                 Nav.doPush(context, const ManagerView());
+                break;
+              }
+              case '비밀번호 변경': {
+                Nav.doPush(context, const ChangePasswordView());
+                break;
+              }
+              case '소변 검사지 구매': {
+                const iosPlatform = MethodChannel('com.wonpl.urine/shop');
+                const androidPlatform = MethodChannel('com.wonpl.urine/shop');
+
+                if (Platform.isAndroid) {
+                  await androidPlatform.invokeMethod('openShop');
+                } else {
+                  await iosPlatform.invokeMethod('openShop');
+                }
                 break;
               }
               case '버전 정보': {
@@ -107,7 +135,6 @@ class _SettingViewState extends State<SettingView>{
                   [
                     StyleText(
                       text: text,
-                      size: AppDim.fontSizeSmall,
                     ),
                     const Icon(
                       Icons.arrow_forward_ios_sharp,

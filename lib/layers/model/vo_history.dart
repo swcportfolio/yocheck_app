@@ -13,6 +13,7 @@ class History {
 
   Map<String, dynamic> toMap(){
     return {
+      'userType': 'H',
       'userID': Authorization().userID,
       'page': page,
       'searchStartDate': searchStartDate,

@@ -312,22 +312,22 @@ class CustomDialog {
               ),
             ),
             content: SizedBox(
-              height: 122,
+              height: 127,
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
                             width: 190,
-                            height: 31,
                             child: StyleText(
                               text: text,
+                              height: 1,
                               align: TextAlign.center,
                               size: AppDim.fontSizeSmall,
-                              maxLinesCount: 2,
+                              maxLinesCount: 3,
                             )),
                       ],
                     ),
@@ -390,6 +390,215 @@ class CustomDialog {
         });
   }
 
+
+
+  /// 검사 기록 삭제 다이얼로그
+  static showDeleteDialog({
+    required String title,
+    required String text,
+    required BuildContext mainContext,
+    required Function onPressed
+  }) {
+    return showDialog(
+        context: mainContext,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: AppConstants.borderLightRadius),
+            title: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  StyleText(
+                    text: title,
+                    fontWeight: AppDim.weightBold,
+                  ),
+                ],
+              ),
+            ),
+            content: SizedBox(
+              height: 127,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            width: 190,
+                            child: StyleText(
+                              text: text,
+                              height: 1,
+                              align: TextAlign.center,
+                              size: AppDim.fontSizeSmall,
+                              maxLinesCount: 3,
+                            )),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 34),
+                    child: Row(
+                      children:
+                      [
+                        Expanded(
+                          child: SizedBox(
+                            width: 60,
+                            height: 45,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  elevation: 3.0,
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: AppConstants.lightRadius))),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const StyleText(
+                                  text: '취소', color: AppColors.white),
+                            ),
+                          ),
+                        ),
+                        const Gap(1),
+
+                        Expanded(
+                          child: SizedBox(
+                            height: 45,
+                            width: 60,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  elevation: 5.0,
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 1.0,
+                                          color: AppColors.primaryColor),
+                                      borderRadius:  BorderRadius.only(
+                                          bottomRight: AppConstants.lightRadius))),
+                              onPressed: () => onPressed(),
+                              child: const StyleText(
+                                text: '확인',
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            contentPadding: const EdgeInsets.all(0.0),
+          );
+        });
+  }
+
+  /// 최신버전 업데이트 요청
+  static showVersionDialog({
+    required String title,
+    required String text,
+    required BuildContext mainContext,
+    required Function onPressed
+  }) {
+    return showDialog(
+        context: mainContext,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: AppConstants.borderLightRadius),
+            title: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  StyleText(
+                    text: title,
+                    fontWeight: AppDim.weightBold,
+                  ),
+                ],
+              ),
+            ),
+            content: SizedBox(
+              height: 127,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 28, 20, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            width: 190,
+                            child: StyleText(
+                              text: text,
+                              height: 1,
+                              align: TextAlign.center,
+                              size: AppDim.fontSizeSmall,
+                              maxLinesCount: 3,
+                            )),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 26),
+                    child: Row(
+                      children:
+                      [
+                        Expanded(
+                          child: SizedBox(
+                            width: 60,
+                            height: 45,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  elevation: 3.0,
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: AppConstants.lightRadius))),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const StyleText(
+                                  text: '취소', color: AppColors.white),
+                            ),
+                          ),
+                        ),
+                        const Gap(1),
+
+                        Expanded(
+                          child: SizedBox(
+                            height: 45,
+                            width: 60,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  elevation: 5.0,
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 1.0,
+                                          color: AppColors.primaryColor),
+                                      borderRadius:  BorderRadius.only(
+                                          bottomRight: AppConstants.lightRadius))),
+                              onPressed: () => onPressed(),
+                              child: const StyleText(
+                                text: '업데이트',
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            contentPadding: const EdgeInsets.all(0.0),
+          );
+        });
+  }
 
   /// Dio Exception Dialog
   static showDioDialog(String title, String text, BuildContext mainContext,

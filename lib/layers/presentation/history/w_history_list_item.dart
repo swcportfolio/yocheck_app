@@ -10,6 +10,7 @@ import 'package:urine/layers/presentation/history/vm_urine_history.dart';
 import '../../entity/history_dto.dart';
 import '../analysis/result/v_urine_result.dart';
 import '../widget/style_text.dart';
+import '../widget/w_custom_dialog.dart';
 
 class HistoryListItem extends StatelessWidget {
 
@@ -88,18 +89,18 @@ class HistoryListItem extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: AppColors.white,
                                 borderRadius: BorderRadius.all(AppConstants.radius),
-                                border: Border.all(color: AppColors.red),
+                                border: Border.all(color: AppColors.orange),
                               ),
                               child: StyleText(
                                 text: positiveText,
-                                color: AppColors.red
+                                color: AppColors.orange
                               ),
                             ),
                             StyleText(
                               text: ' - ${history.positiveCnt}',
                               size: AppDim.fontSizeLarge,
                               fontWeight: AppDim.weight500,
-                              color: AppColors.red,
+                              color: AppColors.orange,
                             ),
                           ],
                         ),
@@ -108,10 +109,26 @@ class HistoryListItem extends StatelessWidget {
                   ],
                 ),
 
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: AppColors.greyTextColor,
-                  size: AppDim.iconXSmall,
+                InkWell(
+                  onTap: () {
+                    CustomDialog.showDeleteDialog(
+                      title: '검사내역 삭제',
+                      text: '${TextFormat.convertTimestamp(history.datetime)} 에 \n검사한 내역을 삭제하시겠습니까?',
+                      mainContext: context,
+                      onPressed: () => {
+                     context.read<HistoryViewModel>().deleteHistory(history.datetime),
+                     Nav.doPop(context)
+                  },
+                );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.delete,
+                      color: AppColors.grey,
+                      size: AppDim.iconSmall,
+                    ),
+                  ),
                 ),
           ]
           )
