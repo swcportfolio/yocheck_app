@@ -51,6 +51,7 @@ class AnalysisTrendViewModel extends ChangeNotifier {
   /// 차트 데이터 조회
   Future<void> fetchUrineChartDio(context) async {
     final toMap = {
+      'userType':'H',
       'userID': Authorization().userID,
       'searchStartDate': _rangeStartDate,
       'searchEndDate': _rangeEndDate,
