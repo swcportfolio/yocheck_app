@@ -30,7 +30,7 @@ class FrameScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {if (isKeyboardHide) AppKeyboardUtil.hide(context)},
+      onTap: () => {if (isKeyboardHide) FocusScope.of(context).unfocus()},
       child: Scaffold(
         backgroundColor: backgroundColor,
         appBar: AppBar(

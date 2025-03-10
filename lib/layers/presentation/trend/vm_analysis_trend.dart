@@ -54,6 +54,7 @@ class AnalysisTrendViewModel extends ChangeNotifier {
       'userID': Authorization().userID,
       'searchStartDate': _rangeStartDate,
       'searchEndDate': _rangeEndDate,
+      'userType': 'H'
     };
     logger.d(toMap);
 

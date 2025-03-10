@@ -42,12 +42,12 @@ class _LoginViewState extends State<LoginView> {
         child: Consumer<LoginViewModel>(
           builder: (context, provider, child) {
             return GestureDetector(
-              onTap: () =>  AppKeyboardUtil.hide(context),
+              onTap: () =>  FocusScope.of(context).unfocus(),
               child: SafeArea(
                     child: Stack(
                       children: [
                         GestureDetector(
-                          onTap: () => AppKeyboardUtil.hide(context),
+                          onTap: () => FocusScope.of(context).unfocus(),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
                               /// 로그인 버튼
                               LoginButton(
                                 onPressed: () => {
-                                  AppKeyboardUtil.hide(context),
+                                FocusScope.of(context).unfocus(),
                                   provider.login(context),
                                 },
                               ),
