@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -113,7 +112,7 @@ class HistoryListItem extends StatelessWidget {
                   onTap: () {
                     CustomDialog.showDeleteDialog(
                       title: '검사내역 삭제',
-                      text: '${TextFormat.convertTimestamp(history.datetime)} 에 \n검사한 내역을 삭제하시겠습니까?',
+                      text: '${TextFormat.convertTimestamp(history.datetime)}\n검사한 내역을 삭제하시겠습니까?',
                       mainContext: context,
                       onPressed: () => {
                      context.read<HistoryViewModel>().deleteHistory(history.datetime),
