@@ -56,6 +56,7 @@ class Authorization{
     userID = '';
     password = '';
     token = '';
+    name = '-';
     toggleGatt = false;
   }
 

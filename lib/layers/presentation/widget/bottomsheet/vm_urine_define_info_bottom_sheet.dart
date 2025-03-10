@@ -48,6 +48,7 @@ class UrineDefineInfoBottomSheetViewModel extends ChangeNotifier {
 
   Future<void> loadDescriptionAndChart(String urineLabel) async {
     final toMap = {
+      'userType': 'H',
       'userID': Authorization().userID,
       'searchStartDate': _rangeStartDate,
       'searchEndDate': _rangeEndDate,

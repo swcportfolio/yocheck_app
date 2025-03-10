@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +12,6 @@ import '../../../../common/common.dart';
 import '../setting/v_setting.dart';
 import '../widget/w_custom_dialog.dart';
 
-
 /// 소변검사 메인 화면
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -23,12 +21,15 @@ class HomeView extends StatefulWidget {
 }
 
 class _UrineHomeViewState extends State<HomeView> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeAppBar(onPressed: ()=> Nav.doPush(context, const SettingView())),
+      appBar: HomeAppBar(
+        onPressed: () => Nav.doPush(context, const SettingView()),
+      ),
       body: ChangeNotifierProvider(
-        create: (BuildContext context) => UrineViewModel(),
+        create: (BuildContext context) => UrineViewModel(context),
         child: SafeArea(
           child: Stack(
             children: [
@@ -37,8 +38,7 @@ class _UrineHomeViewState extends State<HomeView> {
                 child: HomeBackgroundLayout(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:
-                    [
+                    children: [
                       Gap(AppDim.large),
 
                       /// 소변검사 헤더
@@ -54,8 +54,8 @@ class _UrineHomeViewState extends State<HomeView> {
 
               /// 하단 이미지
               Align(
-                  alignment: Alignment.bottomCenter,
-                  child: UrineHomeLower(),
+                alignment: Alignment.bottomCenter,
+                child: UrineHomeLower(),
               ),
             ],
           ),
@@ -63,5 +63,4 @@ class _UrineHomeViewState extends State<HomeView> {
       ),
     );
   }
-
 }

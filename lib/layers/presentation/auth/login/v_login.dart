@@ -9,7 +9,6 @@ import 'package:urine/layers/presentation/auth/login/w_login_button.dart';
 import 'package:urine/layers/presentation/auth/login/w_login_textfield.dart';
 
 import '../../../../common/util/app_keyboard_util.dart';
-import '../../widget/scaffold/frame_scaffold.dart';
 import '../../widget/style_text.dart';
 import 'w_signup_guide_button.dart';
 
@@ -25,7 +24,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
 
-  String get licenseText => '©2024 OPTOSTA, Inc. All rights reserved.';
+  String get licenseText => '©2025 OPTOSTA, Inc. All rights reserved.';
 
   @override
   void initState() {

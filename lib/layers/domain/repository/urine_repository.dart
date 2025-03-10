@@ -15,4 +15,6 @@ abstract class UrineRepository {
   Future<String?> getAiAnalysis(Map<String, dynamic> searchDateMap);
   Future<UrineSaveDTO?> saveUrine(List<Map<String, dynamic>> toMap);
   Future<UserNameDTO?> getUserName();
+  Future<String?> getAppVersion();
+  Future<String> deleteHistory(String dateTime);
 }

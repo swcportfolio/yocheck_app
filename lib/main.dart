@@ -14,8 +14,14 @@ import 'layers/entity/login_dto.dart';
 import 'layers/model/authorization.dart';
 
 
-/// TODO
-/// 1) 포도당 수치 max 4
+/// 1차 기능 구현(1월 5일 ~ 1월 31일)
+/// 1. 앱 자동업데이트 공지 기능(버전관리) - 완료
+/// 2. 인체용, 동물용 플랫폼 분리 검토(userType[H, P]) 로그인, 회원가입
+/// 2-1. 각 api들 마다 userType이 들어갈수 있도록 수정해야됨 - 완료
+/// 3. 옵토스타용 footer 만들기 - 완료
+/// 4. 홈버튼이나 기능버튼으로 바로 이동하느 기능 - 완료(결과화면, 관련질환 화면)
+/// 5. 앱에서 검사지 또는 검사기 구매 하는 기능 - 완료
+/// 6. 검사 내역 삭제 기능
 
 var logger = Logger(
     printer: PrettyPrinter(

@@ -131,6 +131,7 @@ class _InspectionArrangementViewState extends State<InspectionArrangementView>{
                 );
               },
             ),
+
             Platform.isAndroid
                 ? const Gap(AppDim.large)
                 : const Gap(AppDim.xXLarge),

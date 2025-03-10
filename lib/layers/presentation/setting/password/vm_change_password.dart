@@ -75,9 +75,10 @@ class ChangePasswordViewModel extends ChangeNotifier {
 
   Map<String, dynamic> toMap() {
     return {
+      'userType':'H',
       'userID'    : Authorization().userID,
       'password'  : _beforePassController.text,
-      'npassword' : _newPassController.text,
+      'newPassword' : _newPassController.text,
     };
   }
 

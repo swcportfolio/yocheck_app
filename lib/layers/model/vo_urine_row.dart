@@ -17,6 +17,7 @@ class UrineRow {
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> toMap = {
+      'userType': 'H',
       "userID": userID,
       "datetime": datetime,
       "dataType": dataType,

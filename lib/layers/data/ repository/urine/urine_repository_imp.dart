@@ -37,10 +37,13 @@ class UrineRepositoryImp implements UrineRepository {
   @override
   Future<UrineResultDTO?> getUrineResult(String dateTime) async {
     try {
-      final response = await DioManager()
-          .publicDio
-          .get(dateTime == '' ? recentResultApiUrl : urineResultApiUrl,
-          queryParameters: {'userID': Authorization().userID, 'datetime': dateTime});
+      final response = await DioManager().publicDio.get(
+          dateTime == '' ? recentResultApiUrl : urineResultApiUrl,
+          queryParameters: {
+            'userType': 'H',
+            'userID': Authorization().userID,
+            'datetime': dateTime,
+          });
 
       logger.d(response.data);
       if (response.statusCode == 200) {
@@ -116,7 +119,10 @@ class UrineRepositoryImp implements UrineRepository {
           .privateDio
           .get(
             getUserNameApiUrl,
-            queryParameters: {'userID': Authorization().userID},
+            queryParameters: {
+              'userType':'H',
+              'userID': Authorization().userID,
+            },
       );
       logger.d(response.data);
       if (response.statusCode == 200) {
@@ -124,6 +130,46 @@ class UrineRepositoryImp implements UrineRepository {
       } else {
         return null;
       }
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String?> getAppVersion() async {
+    try {
+      final response = await DioManager()
+          .privateDio
+          .get(
+          getAppVersionUrl,
+        queryParameters: {
+          'code': 'H'
+        }
+
+      );
+      logger.d(response.data);
+      if (response.statusCode == 200) {
+        return response.data['data'] ?? '';
+      } else {
+        return null;
+      }
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> deleteHistory(String dateTime) async {
+    try {
+      final response = await DioManager().privateDio.delete(deleteHistoryUrl,
+          data: {
+            "userType": 'H',
+            "userID": Authorization().userID,
+            "datetime": dateTime
+          });
+      logger.d(response.data);
+      return response.data['status']['message'] ?? '';
+
     } catch (error) {
       rethrow;
     }

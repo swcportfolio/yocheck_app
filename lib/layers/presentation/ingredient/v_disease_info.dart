@@ -44,6 +44,7 @@ class _DiseaseInfoViewState extends State<DiseaseInfoView> {
   Widget build(BuildContext context) {
     return FrameScaffold(
       appBarTitle: title,
+      isFloating: true,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(

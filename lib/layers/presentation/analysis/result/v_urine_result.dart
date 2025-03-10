@@ -47,19 +47,12 @@ class _UrineResultViewState extends State<UrineResultView> {
       create: (BuildContext context) => UrineResultViewModel(context),
       child: FrameScaffold(
         appBarTitle: title,
+        isFloating: true,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 24.07.27 검사 결과 요약 차트 비활성화
-              // Consumer<UrineResultViewModel>(
-              //   builder: (context, provider, child) {
-              //     return ResultSummaryChart(chartData: provider.chartData);
-              //   },
-              // ),
-              // const Gap(AppDim.large),
-
               const Gap(AppDim.small),
               StyleText(
                 text: intro,
@@ -135,8 +128,6 @@ class _UrineResultViewState extends State<UrineResultView> {
               const Gap(AppDim.xSmall),
 
 
-
-
               /// 성분 분석 버튼
               const Gap(AppDim.xLarge),
               Consumer<UrineResultViewModel>(
@@ -150,7 +141,6 @@ class _UrineResultViewState extends State<UrineResultView> {
                 },
               ),
               const Gap(AppDim.xXLarge),
-
             ],
           ),
         ),

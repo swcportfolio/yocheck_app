@@ -59,6 +59,7 @@ class LoginViewModel extends ChangeNotifier{
 
   Map<String, dynamic> toMap(){
    return {
+     "userType" : "H",
      'userID'   : _idController.text,
      'password' : _passController.text,
    };
